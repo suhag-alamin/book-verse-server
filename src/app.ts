@@ -1,6 +1,7 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Application } from 'express';
+import globalErrorHandler from './app/middleware/globalErrorHandler';
 
 const app: Application = express();
 
@@ -17,10 +18,6 @@ app.use(
   }),
 );
 
-// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-//   res.send({
-//     message: 'hello world',
-//   });
-// });
+app.use(globalErrorHandler);
 
 export default app;
