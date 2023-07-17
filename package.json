@@ -16,10 +16,8 @@
     "prettier:check": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "prettier:fix": "prettier --write .",
     "lint-prettier": " yarn lint:check && yarn prettier:check",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "lint-staged": {
-    "src/**/*.ts": "yarn lint-prettier"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -31,7 +29,7 @@
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.0",
     "ts-node-dev": "^2.0.0",
@@ -46,5 +44,9 @@
     "http-status": "^1.6.2",
     "mongoose": "^7.3.4",
     "zod": "^3.21.4"
-  }
+  },
+  "lint-staged": {
+    "src/**/*.ts": "yarn lint-prettier"
+  },
+  "repository": "https://github.com/suhag-alamin/book-verse-server.git"
 }
