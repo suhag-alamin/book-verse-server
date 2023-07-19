@@ -34,5 +34,5 @@ export type ILoginUserResponse = {
 };
 
 export type IRefreshTokenResponse = {
-  refreshToken: string;
+  accessToken: string;
 };
