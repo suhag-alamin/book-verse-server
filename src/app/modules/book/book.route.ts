@@ -24,4 +24,11 @@ router.patch(
   BookController.updateBookController,
 );
 
+router.delete(
+  '/:id',
+  auth(ENUM_USER_ROLE.USER),
+  authorizeUser,
+  BookController.deleteBookController,
+);
+
 export const BookRoutes = router;

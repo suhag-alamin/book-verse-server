@@ -92,9 +92,14 @@ const updateBook = async (
   return result;
 };
 
+const deleteBook = async (id: string): Promise<void> => {
+  await Book.findByIdAndDelete(id);
+};
+
 export const BookService = {
   createBook,
   getAllBooks,
   getSingleBook,
   updateBook,
+  deleteBook,
 };
