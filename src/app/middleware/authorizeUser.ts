@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { Book } from '../modules/book/book.model';
-import ApiError from '../../errors/ApiError';
 import httpStatus from 'http-status';
+import { ENUM_USER_ROLE } from '../../enums/user';
+import ApiError from '../../errors/ApiError';
+import { Book } from '../modules/book/book.model';
 
 const authorizeUser = async (
   req: Request,
@@ -12,6 +13,10 @@ const authorizeUser = async (
     const { id } = req.params;
     const user = req.user;
     const book = await Book.findById(id);
+
+    if (user?.role === ENUM_USER_ROLE.ADMIN) {
+      next();
+    }
 
     if (book?.author.toString() !== user?._id) {
       throw new ApiError(

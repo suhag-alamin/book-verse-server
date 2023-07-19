@@ -13,7 +13,7 @@ const createBook = async (payload: IBook): Promise<IBook | null> => {
     payload.image = 'https://i.ibb.co/4WHMwPj/book.jpg';
   }
 
-  const result = (await Book.create(payload)).populate('author');
+  const result = await Book.create(payload);
 
   return result;
 };
@@ -57,6 +57,7 @@ const getAllBooks = async (
   const whereCondition = andCondition.length > 0 ? { $and: andCondition } : {};
 
   const result = await Book.find(whereCondition)
+    .populate('author')
     .sort(sortCondition)
     .skip(skip)
     .limit(limit);
@@ -74,7 +75,7 @@ const getAllBooks = async (
 };
 
 const getSingleBook = async (id: string): Promise<IBook | null> => {
-  const result = await Book.findById(id);
+  const result = await Book.findById(id).populate('author');
   return result;
 };
 
@@ -88,7 +89,9 @@ const updateBook = async (
     throw new ApiError(httpStatus.NOT_FOUND, 'Book not found');
   }
 
-  const result = await Book.findByIdAndUpdate(id, payload, { new: true });
+  const result = await Book.findByIdAndUpdate(id, payload, {
+    new: true,
+  }).populate('author');
   return result;
 };
 
