@@ -18,6 +18,22 @@ const addReviewController = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAllReviewsController = catchAsync(
+  async (req: Request, res: Response) => {
+    const bookId = req.params.id;
+
+    const result = await ReviewService.getAllReviews(bookId);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Review retrieved successfully',
+      data: result,
+    });
+  },
+);
+
 export const ReviewController = {
   addReviewController,
+  getAllReviewsController,
 };

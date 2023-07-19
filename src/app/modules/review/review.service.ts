@@ -16,6 +16,20 @@ const addReview = async (payload: IReview): Promise<IReview | null> => {
   return result;
 };
 
+const getAllReviews = async (bookId: string) => {
+  const result = await Review.find(
+    {
+      book: bookId,
+    },
+    {
+      review: 1,
+    },
+  );
+
+  return result;
+};
+
 export const ReviewService = {
   addReview,
+  getAllReviews,
 };

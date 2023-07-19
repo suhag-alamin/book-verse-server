@@ -11,4 +11,6 @@ router.post(
   ReviewController.addReviewController,
 );
 
+router.get('/:id', ReviewController.getAllReviewsController);
+
 export const ReviewRoutes = router;
