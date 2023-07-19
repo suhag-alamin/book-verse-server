@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { role } from './auth.constant';
 
 const sigUpUserZodSchema = z.object({
   body: z.object({
@@ -18,6 +19,7 @@ const sigUpUserZodSchema = z.object({
     password: z.string({
       required_error: 'Password is required',
     }),
+    role: z.enum([...role] as [string, ...string[]]).optional(),
   }),
 });
 const loginUserZodSchema = z.object({

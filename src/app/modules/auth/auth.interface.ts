@@ -9,12 +9,13 @@ export type IUser = {
   };
   email: string;
   password: string;
+  role: 'user' | 'admin';
 };
 
 export type IUserMethods = {
   isUserExist(
     email: string,
-  ): Promise<Pick<IUser, '_id' | 'email' | 'password'> | null>;
+  ): Promise<Pick<IUser, '_id' | 'email' | 'password' | 'role'> | null>;
   isPasswordMatch(
     givenPassword: string,
     savedPassword: string,

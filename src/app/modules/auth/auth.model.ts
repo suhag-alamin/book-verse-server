@@ -4,6 +4,7 @@ import { Schema, model } from 'mongoose';
 import { IUser, IUserMethods, UserModel } from './auth.interface';
 import bcrypt from 'bcrypt';
 import config from '../../../config';
+import { role } from './auth.constant';
 
 const userSchema = new Schema<IUser, Record<string, unknown>, IUserMethods>(
   {
@@ -30,6 +31,11 @@ const userSchema = new Schema<IUser, Record<string, unknown>, IUserMethods>(
       required: true,
       select: 0,
     },
+    role: {
+      type: String,
+      enum: role,
+      default: 'user',
+    },
   },
   {
     timestamps: true,
@@ -38,13 +44,14 @@ const userSchema = new Schema<IUser, Record<string, unknown>, IUserMethods>(
 
 userSchema.methods.isUserExist = async function (
   email: string,
-): Promise<Pick<IUser, '_id' | 'email' | 'password'> | null> {
+): Promise<Pick<IUser, '_id' | 'email' | 'password' | 'role'> | null> {
   const user = await User.findOne(
     { email },
     {
       _id: 1,
       email: 1,
       password: 1,
+      role: 1,
     },
   ).lean();
   return user;

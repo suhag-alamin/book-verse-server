@@ -37,16 +37,16 @@ const login = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   }
 
   // create access token and refresh token
-  const { _id, email: userEmail } = isUserExist;
+  const { _id, email: userEmail, role } = isUserExist;
 
   const accessToken = JwtHelpers.createToken(
-    { _id, email: userEmail },
+    { _id, email: userEmail, role },
     config.jwt.secret as Secret,
     config.jwt.expiration as string,
   );
 
   const refreshToken = JwtHelpers.createToken(
-    { _id, email: userEmail },
+    { _id, email: userEmail, role },
     config.jwt.refresh_secret as Secret,
     config.jwt.refresh_expiration as string,
   );
@@ -79,10 +79,10 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
   }
 
-  const { _id, email: userEmail } = isUserExist;
+  const { _id, email: userEmail, role } = isUserExist;
   // generate new token
   const newAccessToken = JwtHelpers.createToken(
-    { _id, email: userEmail },
+    { _id, email: userEmail, role },
     config.jwt.secret as Secret,
     config.jwt.expiration as string,
   );

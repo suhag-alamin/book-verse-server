@@ -1,4 +1,6 @@
+import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
+import ApiError from '../../../errors/ApiError';
 import { PaginationHelpers } from '../../../helpers/paginationHelpers';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
@@ -11,7 +13,7 @@ const createBook = async (payload: IBook): Promise<IBook | null> => {
     payload.image = 'https://i.ibb.co/4WHMwPj/book.jpg';
   }
 
-  const result = await Book.create(payload);
+  const result = (await Book.create(payload)).populate('author');
 
   return result;
 };
@@ -76,8 +78,23 @@ const getSingleBook = async (id: string): Promise<IBook | null> => {
   return result;
 };
 
+const updateBook = async (
+  id: string,
+  payload: Partial<IBook>,
+): Promise<IBook | null> => {
+  const isExist = await Book.findById(id);
+
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Book not found');
+  }
+
+  const result = await Book.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
 export const BookService = {
   createBook,
   getAllBooks,
   getSingleBook,
+  updateBook,
 };
