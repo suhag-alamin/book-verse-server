@@ -1,11 +1,12 @@
+import { Request, Response } from 'express';
 import httpStatus from 'http-status';
+import { paginationFields } from '../../../constants/pagination';
 import catchAsync from '../../../shared/catchAsync';
+import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
+import { bookFilterableFields } from './book.constant';
 import { IBook } from './book.interface';
 import { BookService } from './book.service';
-import { Request, Response } from 'express';
-import pick from '../../../shared/pick';
-import { bookFilterableFields, bookSearchableFields } from './book.constant';
 
 const createBookController = catchAsync(async (req: Request, res: Response) => {
   const book = req.body;
@@ -22,7 +23,7 @@ const createBookController = catchAsync(async (req: Request, res: Response) => {
 const getAllBooksController = catchAsync(
   async (req: Request, res: Response) => {
     const filters = pick(req.query, bookFilterableFields);
-    const paginationOptions = pick(req.query, bookSearchableFields);
+    const paginationOptions = pick(req.query, paginationFields);
 
     const result = await BookService.getAllBooks(filters, paginationOptions);
 
