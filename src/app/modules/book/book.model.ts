@@ -7,6 +7,10 @@ const bookSchema = new Schema<IBook, Record<string, unknown>>(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     author: {
       type: Schema.Types.ObjectId,
       ref: 'User',

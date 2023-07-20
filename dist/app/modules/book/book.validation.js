@@ -7,6 +7,9 @@ const createBookZodSchema = zod_1.z.object({
         title: zod_1.z.string({
             required_error: 'Title is required',
         }),
+        description: zod_1.z.string({
+            required_error: 'Description is required',
+        }),
         author: zod_1.z.string({
             required_error: 'Author is required',
         }),

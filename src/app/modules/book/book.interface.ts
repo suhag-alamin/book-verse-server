@@ -3,6 +3,7 @@ import { IUser } from '../auth/auth.interface';
 
 export type IBook = {
   title: string;
+  description: string;
   author: Types.ObjectId | IUser;
   genre: string;
   publicationYear: string;
