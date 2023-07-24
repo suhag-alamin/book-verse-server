@@ -9,7 +9,12 @@ import routes from './app/routes';
 
 const app: Application = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'https://book-verse-suhag.netlify.app/'],
+    credentials: true,
+  }),
+);
 
 // parser
 

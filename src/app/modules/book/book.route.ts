@@ -1,10 +1,10 @@
 import express from 'express';
-import validateRequest from '../../middleware/validateRequest';
-import { BookValidation } from './book.validation';
-import { BookController } from './book.controller';
-import auth from '../../middleware/auth';
 import { ENUM_USER_ROLE } from '../../../enums/user';
+import auth from '../../middleware/auth';
 import authorizeUser from '../../middleware/authorizeUser';
+import validateRequest from '../../middleware/validateRequest';
+import { BookController } from './book.controller';
+import { BookValidation } from './book.validation';
 
 const router = express.Router();
 
@@ -16,7 +16,11 @@ router.post(
 );
 
 router.get('/', BookController.getAllBooksController);
-router.get('/:id', BookController.getSingleBookController);
+router.get(
+  '/:id',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+  BookController.getSingleBookController,
+);
 
 router.patch(
   '/:id',
