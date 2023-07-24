@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { ErrorRequestHandler } from 'express';
+import httpStatus from 'http-status';
+import { MongoServerError } from 'mongodb';
 import { ZodError } from 'zod';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
@@ -13,6 +15,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500;
   let message = 'Something went wrong';
   let errorMessages: IGenericErrorMessage[] = [];
+  // console.log('error', error);
 
   if (error?.name === 'ValidationError') {
     const simplifiedError = handleValidationError(error);
@@ -40,6 +43,19 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
           },
         ]
       : [];
+  } else if (error instanceof MongoServerError && error.code === 11000) {
+    statusCode = httpStatus.CONFLICT;
+    message =
+      'Already have an account with this email. Please login or use another email';
+    const { keyValue } = error;
+    errorMessages = [
+      {
+        path: Object.keys(keyValue).join(','),
+        message: `Duplicate entry for ${Object.keys(keyValue).join(
+          ',',
+        )}: ${Object.values(keyValue).join(',')}`,
+      },
+    ];
   } else if (error instanceof Error) {
     message = error.message;
     errorMessages = error?.message
