@@ -11,7 +11,8 @@ const app: Application = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://book-verse-suhag.netlify.app/'],
+    origin: ['https://book-verse-suhag.netlify.app', 'http://localhost:3000'],
+
     credentials: true,
   }),
 );
