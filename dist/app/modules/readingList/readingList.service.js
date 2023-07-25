@@ -9,14 +9,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const catchAsync = (fn) => {
-    return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            yield fn(req, res, next);
-        }
-        catch (error) {
-            next(error);
-        }
-    });
+exports.ReadingListService = void 0;
+const readingList_model_1 = require("./readingList.model");
+const createReadingList = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = (yield (yield readingList_model_1.ReadingList.create(payload)).populate('book')).populate('user');
+    return result;
+});
+const getReadingList = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield readingList_model_1.ReadingList.find().populate('book').populate('user');
+    return result;
+});
+exports.ReadingListService = {
+    createReadingList,
+    getReadingList,
 };
-exports.default = catchAsync;

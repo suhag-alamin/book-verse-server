@@ -12,32 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReviewController = void 0;
+exports.ReadingListController = void 0;
+const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
-const http_status_1 = __importDefault(require("http-status"));
-const review_service_1 = require("./review.service");
-const addReviewController = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const reviewData = req.body;
-    const result = yield review_service_1.ReviewService.addReview(reviewData);
+const readingList_service_1 = require("./readingList.service");
+const createReadingListController = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const readingList = req.body;
+    const result = yield readingList_service_1.ReadingListService.createReadingList(readingList);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Review added successfully',
+        message: 'Reading List created successfully',
         data: result,
     });
 }));
-const getAllReviewsController = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const bookId = req.params.id;
-    const result = yield review_service_1.ReviewService.getAllReviews(bookId);
+const getReadingListController = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield readingList_service_1.ReadingListService.getReadingList();
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Review retrieved successfully',
+        message: 'Reading List retrieved successfully',
         data: result,
     });
 }));
-exports.ReviewController = {
-    addReviewController,
-    getAllReviewsController,
+exports.ReadingListController = {
+    createReadingListController,
+    getReadingListController,
 };
