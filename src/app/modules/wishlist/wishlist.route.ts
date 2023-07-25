@@ -14,4 +14,10 @@ router.post(
   WishlistController.createWishlistController,
 );
 
+router.get(
+  '/',
+  auth(ENUM_USER_ROLE.USER),
+  WishlistController.getWishlistController,
+);
+
 export const WishlistRoutes = router;

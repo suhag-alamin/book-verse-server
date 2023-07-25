@@ -10,6 +10,12 @@ const createWishlist = async (
   return result;
 };
 
+const getWishlist = async (): Promise<IWishlist[]> => {
+  const result = await Wishlist.find().populate('book').populate('user');
+  return result;
+};
+
 export const WishlistService = {
   createWishlist,
+  getWishlist,
 };

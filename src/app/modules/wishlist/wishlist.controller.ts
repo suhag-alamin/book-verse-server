@@ -19,6 +19,20 @@ const createWishlistController = catchAsync(
   },
 );
 
+const getWishlistController = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await WishlistService.getWishlist();
+
+    sendResponse<IWishlist[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Wishlist retrieved successfully',
+      data: result,
+    });
+  },
+);
+
 export const WishlistController = {
   createWishlistController,
+  getWishlistController,
 };
