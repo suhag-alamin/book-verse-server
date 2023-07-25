@@ -22,6 +22,13 @@ router.get(
   BookController.getSingleBookController,
 );
 
+// get all books of a user
+router.get(
+  '/user/:id',
+  auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.USER),
+  BookController.getAllBooksOfUserController,
+);
+
 router.patch(
   '/:id',
   auth(ENUM_USER_ROLE.USER),

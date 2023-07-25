@@ -79,6 +79,11 @@ const getSingleBook = async (id: string): Promise<IBook | null> => {
   return result;
 };
 
+const getAllBooksOfUser = async (id: string): Promise<IBook[]> => {
+  const result = await Book.find({ author: id }).populate('author');
+  return result;
+};
+
 const updateBook = async (
   id: string,
   payload: Partial<IBook>,
@@ -103,6 +108,7 @@ export const BookService = {
   createBook,
   getAllBooks,
   getSingleBook,
+  getAllBooksOfUser,
   updateBook,
   deleteBook,
 };
