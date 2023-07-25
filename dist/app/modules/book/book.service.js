@@ -81,6 +81,10 @@ const getSingleBook = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield book_model_1.Book.findById(id).populate('author');
     return result;
 });
+const getAllBooksOfUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield book_model_1.Book.find({ author: id }).populate('author');
+    return result;
+});
 const updateBook = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield book_model_1.Book.findById(id);
     if (!isExist) {
@@ -98,6 +102,7 @@ exports.BookService = {
     createBook,
     getAllBooks,
     getSingleBook,
+    getAllBooksOfUser,
     updateBook,
     deleteBook,
 };

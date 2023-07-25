@@ -52,6 +52,16 @@ const getSingleBookController = (0, catchAsync_1.default)((req, res) => __awaite
         data: result,
     });
 }));
+const getAllBooksOfUserController = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield book_service_1.BookService.getAllBooksOfUser(id);
+    (0, sendResponse_1.default)(res, {
+        statusCode: http_status_1.default.OK,
+        success: true,
+        message: 'Book retrieved successfully',
+        data: result,
+    });
+}));
 const updateBookController = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const updatedData = req.body;
@@ -76,6 +86,7 @@ exports.BookController = {
     createBookController,
     getAllBooksController,
     getSingleBookController,
+    getAllBooksOfUserController,
     updateBookController,
     deleteBookController,
 };
