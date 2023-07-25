@@ -32,7 +32,37 @@ const getReadingListController = catchAsync(
   },
 );
 
+const updateReadingListStatusController = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await ReadingListService.updateReadingListStatus(id);
+
+    sendResponse<IReadingList>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Reading List updated successfully',
+      data: result,
+    });
+  },
+);
+
+const deleteReadingListController = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result = await ReadingListService.deleteReadingList(id);
+
+    sendResponse<IReadingList>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Reading List deleted successfully',
+      data: result,
+    });
+  },
+);
+
 export const ReadingListController = {
   createReadingListController,
   getReadingListController,
+  updateReadingListStatusController,
+  deleteReadingListController,
 };

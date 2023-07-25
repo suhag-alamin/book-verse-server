@@ -23,7 +23,29 @@ const getReadingList = async (): Promise<IReadingList[]> => {
   return result;
 };
 
+const updateReadingListStatus = async (
+  id: string,
+): Promise<IReadingList | null> => {
+  const result = await ReadingList.findByIdAndUpdate(
+    id,
+    { isFinished: true },
+    { new: true },
+  )
+    .populate('book')
+    .populate('user');
+  return result;
+};
+
+const deleteReadingList = async (id: string): Promise<IReadingList | null> => {
+  const result = await ReadingList.findByIdAndDelete(id)
+    .populate('book')
+    .populate('user');
+  return result;
+};
+
 export const ReadingListService = {
   createReadingList,
   getReadingList,
+  updateReadingListStatus,
+  deleteReadingList,
 };

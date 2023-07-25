@@ -13,6 +13,10 @@ const ReadingListSchema = new Schema<IReadingList, Record<string, unknown>>({
     ref: 'User',
     required: true,
   },
+  isFinished: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 export const ReadingList = model<IReadingList, ReadingListModel>(
