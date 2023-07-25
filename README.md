@@ -101,6 +101,9 @@ BookVerse is a web application that allows users to search for books, save them 
 - /wishlist (GET)
   -- Header: Authorization: token
 
+- /wishlist/:id (DELETE)
+  -- Header: Authorization: token
+
 ### Reading List
 
 - /reading-list (POST)
@@ -114,6 +117,12 @@ BookVerse is a web application that allows users to search for books, save them 
 ```
 
 - /reading-list (GET)
+  -- Header: Authorization: token
+
+- /reading-list/:id (PATCH)
+  -- Header: Authorization: token
+
+- /reading-list/:id (DELETE)
   -- Header: Authorization: token
 
 ### Review

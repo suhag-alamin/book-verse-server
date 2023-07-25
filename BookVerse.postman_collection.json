@@ -1,277 +1,594 @@
 {
-  "info": {
-    "_postman_id": "5c13bace-41b7-4bf2-8c1d-f0bed4faf051",
-    "name": "BookVerse",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "22433617"
-  },
-  "item": [
-    {
-      "name": "Auth",
-      "item": [
-        {
-          "name": "Sign Up",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": {\r\n        \"firstName\": \"Suhag\",\r\n        \"lastName\": \"Al Amin\"\r\n    },\r\n    \"email\": \"suhag2@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{ROOT}}/auth/signup",
-              "host": ["{{ROOT}}"],
-              "path": ["auth", "signup"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Login",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n     \"email\": \"suhag@gmail.com\",\r\n    \"password\": \"123456\"\r\n\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{ROOT}}/auth/login",
-              "host": ["{{ROOT}}"],
-              "path": ["auth", "login"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Refresh token",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{ROOT}}/auth/refresh-token",
-              "host": ["{{ROOT}}"],
-              "path": ["auth", "refresh-token"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Book",
-      "item": [
-        {
-          "name": "Create Book",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Test 3\",\r\n    \"author\": \"64b7bea062d204a1ee7afc7d\",\r\n    \"genre\": \"Action\",\r\n    \"publicationYear\": \"2022\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{ROOT}}/book",
-              "host": ["{{ROOT}}"],
-              "path": ["book"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Books",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{ROOT}}/book",
-              "host": ["{{ROOT}}"],
-              "path": ["book"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Search Book",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{ROOT}}/book?searchTerm=action",
-              "host": ["{{ROOT}}"],
-              "path": ["book"],
-              "query": [
-                {
-                  "key": "searchTerm",
-                  "value": "action"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Filters Book",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{ROOT}}/book?publicationYear=2023&genre=Action&sortBy=createdAt&sortOrder=desc",
-              "host": ["{{ROOT}}"],
-              "path": ["book"],
-              "query": [
-                {
-                  "key": "publicationYear",
-                  "value": "2023"
-                },
-                {
-                  "key": "genre",
-                  "value": "Action"
-                },
-                {
-                  "key": "sortBy",
-                  "value": "createdAt"
-                },
-                {
-                  "key": "sortOrder",
-                  "value": "desc"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Single Book",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{ROOT}}/book/64b7992f007ff38fd6fc2b58",
-              "host": ["{{ROOT}}"],
-              "path": ["book", "64b7992f007ff38fd6fc2b58"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Book",
-          "request": {
-            "method": "PATCH",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI3YmVhMDYyZDIwNGExZWU3YWZjN2QiLCJlbWFpbCI6InN1aGFnMkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY4OTc2MzUxNCwiZXhwIjoxNjg5ODQ5OTE0fQ.O7kBbOHp28XQaaCqH2psMr-TG-b7Tl2x0ABFiKYsBNI",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Test 20\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{ROOT}}/book/64b7bc5252b7026c82ffb657",
-              "host": ["{{ROOT}}"],
-              "path": ["book", "64b7bc5252b7026c82ffb657"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Book",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5NzYzODIzLCJleHAiOjE2ODk4NTAyMjN9.YqqXe0aZHO7cQU3CIBEX4oWkOJVo-OCKnlnR9OQQx28",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Test 20\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{ROOT}}/book/64b7bc5252b7026c82ffb657",
-              "host": ["{{ROOT}}"],
-              "path": ["book", "64b7bc5252b7026c82ffb657"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Review",
-      "item": [
-        {
-          "name": "Add Review",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "authorization",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5NzYzODIzLCJleHAiOjE2ODk4NTAyMjN9.YqqXe0aZHO7cQU3CIBEX4oWkOJVo-OCKnlnR9OQQx28",
-                "type": "text"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"book\": \"64b7beb262d204a1ee7afc80\",\r\n    \"review\": \"Great Book\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{ROOT}}/review",
-              "host": ["{{ROOT}}"],
-              "path": ["review"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get All Reviews",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{ROOT}}/review/64b7beb262d204a1ee7afc80",
-              "host": ["{{ROOT}}"],
-              "path": ["review", "64b7beb262d204a1ee7afc80"]
-            }
-          },
-          "response": []
-        }
-      ]
-    }
-  ]
+	"info": {
+		"_postman_id": "5c13bace-41b7-4bf2-8c1d-f0bed4faf051",
+		"name": "BookVerse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22433617"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": {\r\n        \"firstName\": \"Suhag\",\r\n        \"lastName\": \"Al Amin\"\r\n    },\r\n    \"email\": \"suhag2@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/auth/signup",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"email\": \"suhag@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/auth/login",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ROOT}}/auth/refresh-token",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5ODQ3OTgyLCJleHAiOjE2ODk5MzQzODJ9.1uPaueI0weOtAF8ZnMZ5PBjRs6nD6oP23_3CC0CAUgk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test 3\",\r\n    \"description\": \"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, iusto suscipit libero rerum facere amet soluta voluptatem? Laborum dolorem repellat aspernatur libero commodi inventore sit alias ipsum iure vero odio tempora nostrum, atque aliquam ullam, necessitatibus ea distinctio. Delectus ducimus aspernatur alias. Odio optio accusantium saepe voluptatem necessitatibus adipisci ratione quidem quos totam consequuntur delectus aliquam tempore iusto, eum perspiciatis officia harum iste odit itaque porro? Officiis libero nisi, molestias fugit vitae iure labore totam in id ullam natus accusamus aliquid expedita minima minus hic provident dolor dolorum facere accusantium. Dolor odit in facere pariatur quo culpa quam magnam. Autem suscipit at et. Libero architecto ducimus reiciendis vel quisquam voluptatibus quas, voluptas quae saepe corporis voluptatem molestiae beatae necessitatibus modi id facere excepturi, assumenda nisi? Earum, autem aspernatur aut, quaerat eveniet eligendi sunt itaque quod ea ad, tempora sequi! Voluptatum possimus autem earum at incidunt assumenda totam distinctio rerum veritatis.\",\r\n    \"author\": \"64b7bea062d204a1ee7afc7d\",\r\n    \"genre\": \"Action\",\r\n    \"publicationYear\": \"2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/book",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ROOT}}/book",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Books by user id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjgxMTYxLCJleHAiOjE2OTAzNjc1NjF9.jESledKf2VRMTYx0rjjE5KD0Y39cEyVdkBeHLQAe5rY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/book/user/64b526ac691f0342ea83e07f",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book",
+								"user",
+								"64b526ac691f0342ea83e07f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ROOT}}/book?searchTerm=action",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "action"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filters Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ROOT}}/book?publicationYear=2023&genre=Action&sortBy=createdAt&sortOrder=desc",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book"
+							],
+							"query": [
+								{
+									"key": "publicationYear",
+									"value": "2023"
+								},
+								{
+									"key": "genre",
+									"value": "Action"
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Book",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlM2JlZGE4MzkwMjM0NDgzYTg5NjEiLCJlbWFpbCI6Im1va3RhQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjE2NzM2LCJleHAiOjE2OTAyMTY3NDZ9.9h6PmIlup2hECpVMzlFvUaE4rcdzMDd0e6XdnX7YonQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/book/64b7992f007ff38fd6fc2b58",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book",
+								"64b7992f007ff38fd6fc2b58"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI3YmVhMDYyZDIwNGExZWU3YWZjN2QiLCJlbWFpbCI6InN1aGFnMkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY4OTc2MzUxNCwiZXhwIjoxNjg5ODQ5OTE0fQ.O7kBbOHp28XQaaCqH2psMr-TG-b7Tl2x0ABFiKYsBNI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test 20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/book/64b7bc5252b7026c82ffb657",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book",
+								"64b7bc5252b7026c82ffb657"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5NzYzODIzLCJleHAiOjE2ODk4NTAyMjN9.YqqXe0aZHO7cQU3CIBEX4oWkOJVo-OCKnlnR9OQQx28",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test 20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/book/64b7bc5252b7026c82ffb657",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"book",
+								"64b7bc5252b7026c82ffb657"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Add Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjg5NzYzODIzLCJleHAiOjE2ODk4NTAyMjN9.YqqXe0aZHO7cQU3CIBEX4oWkOJVo-OCKnlnR9OQQx28",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": \"64b7beb262d204a1ee7afc80\",\r\n    \"review\": \"Great Book\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/review",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ROOT}}/review/64b7beb262d204a1ee7afc80",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"review",
+								"64b7beb262d204a1ee7afc80"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reading List",
+			"item": [
+				{
+					"name": "Add Reading List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjc1ODM4LCJleHAiOjE2OTAzNjIyMzh9.8AomIIFZ4Qwarq_k2NZ9T3P4YG1Y1sF03XJLet_8crM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": \"64bf5f48687491dca816e84e\",\r\n    \"user\": \"64b526ac691f0342ea83e07f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/reading-list",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"reading-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reading List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjc1ODM4LCJleHAiOjE2OTAzNjIyMzh9.8AomIIFZ4Qwarq_k2NZ9T3P4YG1Y1sF03XJLet_8crM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/reading-list",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"reading-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjc1ODM4LCJleHAiOjE2OTAzNjIyMzh9.8AomIIFZ4Qwarq_k2NZ9T3P4YG1Y1sF03XJLet_8crM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/reading-list/64bf93c7602eeb1b242cf2cf",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"reading-list",
+								"64bf93c7602eeb1b242cf2cf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Reading List",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjc1ODM4LCJleHAiOjE2OTAzNjIyMzh9.8AomIIFZ4Qwarq_k2NZ9T3P4YG1Y1sF03XJLet_8crM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ROOT}}/reading-list/64bf93c7602eeb1b242cf2cf",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"reading-list",
+								"64bf93c7602eeb1b242cf2cf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "Add Wishlist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjc1ODM4LCJleHAiOjE2OTAzNjIyMzh9.8AomIIFZ4Qwarq_k2NZ9T3P4YG1Y1sF03XJLet_8crM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"book\": \"64bf5f48687491dca816e84e\",\r\n    \"user\": \"64b526ac691f0342ea83e07f\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/wishlist",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Wishlist",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjc1ODM4LCJleHAiOjE2OTAzNjIyMzh9.8AomIIFZ4Qwarq_k2NZ9T3P4YG1Y1sF03XJLet_8crM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/wishlist",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Wishlist",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGI1MjZhYzY5MWYwMzQyZWE4M2UwN2YiLCJlbWFpbCI6InN1aGFnQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjkwMjc1ODM4LCJleHAiOjE2OTAzNjIyMzh9.8AomIIFZ4Qwarq_k2NZ9T3P4YG1Y1sF03XJLet_8crM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ROOT}}/wishlist/64bfcefce12129f27743bb67",
+							"host": [
+								"{{ROOT}}"
+							],
+							"path": [
+								"wishlist",
+								"64bfcefce12129f27743bb67"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
