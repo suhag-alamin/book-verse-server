@@ -12,6 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReadingListService = void 0;
 const readingList_model_1 = require("./readingList.model");
 const createReadingList = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const readingList = yield readingList_model_1.ReadingList.findOne({
+        book: payload.book,
+        user: payload.user,
+    });
+    if (readingList) {
+        return null;
+    }
     const result = (yield (yield readingList_model_1.ReadingList.create(payload)).populate('book')).populate('user');
     return result;
 });

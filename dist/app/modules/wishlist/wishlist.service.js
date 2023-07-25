@@ -12,6 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WishlistService = void 0;
 const wishlist_model_1 = require("./wishlist.model");
 const createWishlist = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const wishlist = yield wishlist_model_1.Wishlist.findOne({
+        book: payload.book,
+        user: payload.user,
+    });
+    if (wishlist) {
+        return null;
+    }
     const result = (yield (yield wishlist_model_1.Wishlist.create(payload)).populate('book')).populate('user');
     return result;
 });

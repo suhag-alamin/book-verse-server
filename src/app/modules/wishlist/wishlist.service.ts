@@ -4,6 +4,14 @@ import { Wishlist } from './wishlist.model';
 const createWishlist = async (
   payload: IWishlist,
 ): Promise<IWishlist | null> => {
+  const wishlist = await Wishlist.findOne({
+    book: payload.book,
+    user: payload.user,
+  });
+  if (wishlist) {
+    return null;
+  }
+
   const result = (
     await (await Wishlist.create(payload)).populate('book')
   ).populate('user');

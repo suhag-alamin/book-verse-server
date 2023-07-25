@@ -7,6 +7,7 @@ const wishlistSchema = new mongoose_1.Schema({
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Book',
         required: true,
+        unique: true,
     },
     user: {
         type: mongoose_1.Schema.Types.ObjectId,
